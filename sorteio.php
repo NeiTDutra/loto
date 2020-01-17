@@ -4,11 +4,13 @@ for ( $p = 0; $p < 10; $p += 1)
 {
 
 	$pp = $p += 1;
-	echo 'Aposta - '.$pp.'<hr>';
+	echo 'Aposta - '.$pp;
 	$pp = $p -= 1;
 	sorteio($_POST);
 
 }
+
+unset ($_POST);
 
 function sorteio($pst)
 {
@@ -45,7 +47,7 @@ function sorteio($pst)
 	
 	shuffle($arr1);
 	
-	echo '<div class="sort"><table>';
+	echo '<hr><div class="sort"><table>';
 	
 	
 	for ( $i = 0; $i < count($arr2); $i += 1 )
@@ -57,7 +59,7 @@ function sorteio($pst)
 			if ( $t === $i )
 			{
 			
-				echo '<tr><td style="width:30%;">';
+				echo '<tr><td>';
 			
 			}
 		
@@ -69,7 +71,7 @@ function sorteio($pst)
 			if ( $arr2[$i] === $arr1[$k] && $arr1[$k] != $arr3[$j])
 			{	
 			
-				echo '<div style="border:1px solid black; position:relative; display:flex; justify-content:center; float:left; width:10%; margin:2%; color:#008B8B; background: #C1FFC1;">'.$arr2[$i].'</div>';
+				echo '<div class="sort_cell" id="green">'.$arr2[$i].'</div>';
 				$arr2[$i] = null;
 			
 			}
@@ -80,8 +82,9 @@ function sorteio($pst)
 			if ( $arr2[$i] === $arr3[$j] && $arr2[$i] != null && $arr2[$i] != $arr1[$k])
 			{
 			
-				echo '<div style="border:1px solid black; position:relative;  display:flex; justify-content:center;float:left; width:10%; margin:2%; color:red; background: #FFE4B5;">'.$arr3[$j].'</div>';
+				echo '<div class="sort_cell" id="red">'.$arr3[$j].'</div>';
 				$arr2[$i] = null;
+				$arr3[$j] = null;
 			
 			}
 			
@@ -92,12 +95,17 @@ function sorteio($pst)
 		if ( $arr2[$i] != null )
 		{
 			
-			echo '<div style="border:1px solid black; position:relative;  display:flex; justify-content:center;float:left; width:10%; margin:2%; color:black;">'.$arr2[$i].'</div>';
+			echo '<div class="sort_cell" id="black">'.$arr2[$i].'</div>';
 		
 		}
 		
 	}
 
 		echo '</table></div>';
+		
+		unset ($arr1);
+		unset ($arr2);
+		unset ($arr3);
+		unset ($troca);
 	
 }

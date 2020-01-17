@@ -1,7 +1,7 @@
 <?php
 
-    init_set('display_errors', true);
-    error_reporting(E_ALL);
+   // init_set('display_errors', true);
+   // error_reporting(E_ALL);
 
 ?>
 
@@ -12,11 +12,45 @@
 	</head>
 		<style>
 		
+		.sort_cell {
+			border: 1px solid black; 
+			position: relative; 
+			display: flex; 
+			justify-content: center; 
+			float: left; 
+			width: 10%; 
+			margin: 2% 4% 2% 5%; 
+		}
+		
+		#green {
+			color: #008B8B; 
+			background: #C1FFC1;
+		}
+		
+		#red {
+			color: red; 
+			background: #FFE4B5;
+		}
+		
+		#black {
+			color: black;
+		}
+		
 		.sort {
-			 display: flex; 
-			 flex-direction: inline; 
-			 align-items: center; 
-			 width: 100%;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			width: 20%;
+			background: green;
+			margin: 2% 0;
+		}
+		
+		.sort table {
+			padding: 2% 0;
+		}
+		
+		.sort td {
+			width:30%;
 		}
 		
 		.formulario{
