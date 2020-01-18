@@ -1,7 +1,9 @@
 <?php
 
-   // init_set('display_errors', true);
-   // error_reporting(E_ALL);
+	
+	ini_set('display_startup_erros',1);
+	ini_set('display_errors', true);
+	error_reporting(E_ALL);
 
 ?>
 
@@ -37,12 +39,10 @@
 		}
 		
 		.sort {
-			display: flex;
-			flex-wrap: wrap;
-			align-items: center;
 			width: 20%;
 			background: green;
 			margin: 2% 0;
+			align-items: center;
 		}
 		
 		.sort table {
@@ -53,18 +53,28 @@
 			width:30%;
 		}
 		
-		.formulario{
-			width: 100%; 
+		.sort_container {
+			width: 100%;
 			height: auto;
-			display: inline;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
+		
+		.formulario{
+			height: auto;
 			align-items: left;
+			padding: 3% 0 0 10%;  
 		}
 		
 		.container {
 			 display: flex; 
 			 flex-direction: column; 
-			 align-items: center; 
+			 align-items: left; 
 			 width: 100%;
+		}
+		
+		.tb_numeros_errados {
 		}
 
 		.tb_numeros_errados input[type="checkbox"] + label {
@@ -91,6 +101,7 @@
 		
 		input[type="submit"] {
 			float: left;
+			margin-left: 0.5%;
 		}
 		
 		.top {
@@ -117,15 +128,14 @@
 		</style>
 	<body>
 		<div class="container">
-		<div class="top">
-			<ul>
-			<li><a href="#">Home</a></li>
-			<li><a href="#" >Organização</a></li>
-			<li><a href="#">Informações</a></li>
-			</ul>
-		</div>
-		<table>
-		<div class="formulario">
+			<div class="top">
+				<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="#" >Organização</a></li>
+				<li><a href="#">Informações</a></li>
+				</ul>
+			</div>
+			<div class="formulario">
 		<form action=<?php echo  $_SERVER['PHP_SELF'] ;?> method="post">
 			<table class="tb_numeros_errados">
 				<tr>
@@ -246,14 +256,17 @@
 		</div>
 	</div>
 		</br>
+		<div class="sort_container">
 	<?php
-		if ( $_POST['sortear'] )
+		if ( isset($_POST['sortear']) )
 		{
 		
 			require_once 'sorteio.php';
+			unset ($_POST);
 		
 		}
 
 	?>
+	</div>
 	</body>
 </html>

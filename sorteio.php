@@ -4,50 +4,62 @@ for ( $p = 0; $p < 10; $p += 1)
 {
 
 	$pp = $p += 1;
-	echo 'Aposta - '.$pp;
+	echo '<p>Aposta - '.$pp.'</p></br>';
 	$pp = $p -= 1;
 	sorteio($_POST);
-
+		
 }
-
-unset ($_POST);
 
 function sorteio($pst)
 {
 
-	unset($_POST['sortear']);
+	unset($pst['sortear']);
 		
-		$i = 0;	
-		foreach ( $_POST as $p )
+		$s = 0;	
+		foreach ( $pst as $p )
 		{
 			$p = intval($p);
-			$arr[$i] = $p;
-			$i += 1;
+			$arr[$s] = $p;
+			$s += 1;
 		}
-	$arr3 = $arr;
+		
+	$arr3 = isset($arr) ? $arr : null;
 	$arr1 = range(1,25);
 	$arr2 = range(1,25);
 	$troca = array(0, 5, 10, 15, 20);
+	
 	for ( $k = 0; $k < count($arr1); $k += 1 )
 	{
 	
-		foreach ($arr3 as $b)
+		if ( $arr3 != null )
 		{
 		
-			if ( $arr1[$k] === intval($b) )
+			foreach ($arr3 as $b)
 			{
 			
-				unset ($arr1[$k]);
-			
+				if ( $arr1[$k] === $b )
+				{
+				
+					unset ($arr1[$k]);
+				
+				}
+				
 			}
-			
+		
 		}
-	
+		else
+		{
+		
+			return false;
+			die();
+		
+		}
+		
 	}
 	
 	shuffle($arr1);
 	
-	echo '<hr><div class="sort"><table>';
+	echo '<div class="sort"><table>';
 	
 	
 	for ( $i = 0; $i < count($arr2); $i += 1 )
@@ -71,7 +83,7 @@ function sorteio($pst)
 			if ( $arr2[$i] === $arr1[$k] && $arr1[$k] != $arr3[$j])
 			{	
 			
-				echo '<div class="sort_cell" id="green">'.$arr2[$i].'</div>';
+				echo '<div class="sort_cell" id="green">'.$arr1[$k].'</div>';
 				$arr2[$i] = null;
 			
 			}
@@ -88,6 +100,7 @@ function sorteio($pst)
 			
 			}
 			
+			
 		}
 			
 		}
@@ -99,10 +112,10 @@ function sorteio($pst)
 		
 		}
 		
+		
 	}
 
 		echo '</table></div>';
-		
 		unset ($arr1);
 		unset ($arr2);
 		unset ($arr3);
