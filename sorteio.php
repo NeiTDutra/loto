@@ -8,7 +8,6 @@ function novo_sort()
 	
 		unset($_SESSION['sortear']);
 		echo '<script>alert("Escolha novos números");</script>';
-		header('Location:index.php');
 	
 	}
 	else
@@ -31,7 +30,6 @@ function novo_sort()
 function sorteio($pst)
 {
 
-	session_start();
 	$_SESSION['sortear'] = $_POST['sortear'];
 	unset($pst['sortear']);
 		
@@ -101,7 +99,7 @@ function sorteio($pst)
 		for ( $k = 0; $k < 15; $k += 1 )
 		{
 			
-			if ( $arr2[$i] === $arr1[$k] && $arr1[$k] != $arr3[$j])
+			if ( $arr2[$i] === $arr1[$k] )
 			{	
 			
 				echo '<div class="sort_cell" id="green">'.$arr1[$k].'</div>';
