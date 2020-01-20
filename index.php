@@ -1,10 +1,11 @@
 <?php
 
-	
+	/*
 	ini_set('display_startup_erros',1);
 	ini_set('display_errors', true);
 	error_reporting(E_ALL);
-
+*/
+	session_start();
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +65,11 @@
 		.formulario{
 			height: auto;
 			align-items: left;
-			padding: 3% 0 0 10%;  
+		}
+		
+		.formulario form {
+			
+			margin: 3% 0 0 10%;
 		}
 		
 		.container {
@@ -75,6 +80,7 @@
 		}
 		
 		.tb_numeros_errados {
+			
 		}
 
 		.tb_numeros_errados input[type="checkbox"] + label {
@@ -253,6 +259,9 @@
 			<input type="submit" name="sortear" value="Sortear">
 			<input type="submit" name="estatistica" value="Estatística">
 		</form>
+		</br>
+		</br>
+		<hr>
 		</div>
 	</div>
 		</br>
@@ -262,6 +271,7 @@
 		{
 		
 			require_once 'sorteio.php';
+			novo_sort();
 			unset ($_POST);
 		
 		}

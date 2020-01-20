@@ -1,18 +1,38 @@
 <?php
 
-for ( $p = 0; $p < 10; $p += 1)
+function novo_sort()
 {
 
-	$pp = $p += 1;
-	echo '<p>Aposta - '.$pp.'</p></br>';
-	$pp = $p -= 1;
-	sorteio($_POST);
-		
+	if ( isset($_SESSION['sortear']) )
+	{
+	
+		unset($_SESSION['sortear']);
+		echo '<script>alert("Escolha novos números");</script>';
+		header('Location:index.php');
+	
+	}
+	else
+	{
+
+		for ( $p = 0; $p < 10; $p += 1)
+		{
+
+			$pp = $p += 1;
+			echo '<p>Aposta - '.$pp.'</p></br>';
+			$pp = $p -= 1;
+			sorteio($_POST);
+				
+		}
+
+	}
+
 }
 
 function sorteio($pst)
 {
 
+	session_start();
+	$_SESSION['sortear'] = $_POST['sortear'];
 	unset($pst['sortear']);
 		
 		$s = 0;	
@@ -41,6 +61,7 @@ function sorteio($pst)
 				{
 				
 					unset ($arr1[$k]);
+					sort ($arr1);
 				
 				}
 				
@@ -97,6 +118,7 @@ function sorteio($pst)
 				echo '<div class="sort_cell" id="red">'.$arr3[$j].'</div>';
 				$arr2[$i] = null;
 				$arr3[$j] = null;
+				
 			
 			}
 			
