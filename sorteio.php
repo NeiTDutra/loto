@@ -3,36 +3,28 @@
 function novo_sort()
 {
 
-	if ( isset($_SESSION['sortear']) )
-	{
-	
-		unset($_SESSION['sortear']);
-		echo '<script>alert("Escolha novos números");</script>';
-	
-	}
-	else
-	{
-
-		for ( $p = 0; $p < 10; $p += 1)
+		unset($_POST['sortear']);
+		
+		$quant_sort = $_POST['quant_sort'];
+		unset($_POST['quant_sort']);
+		
+		echo '<div class="sort_container">';
+		
+		for ( $p = 0; $p < $quant_sort; $p += 1)
 		{
-
 			$pp = $p += 1;
-			echo '<p>Aposta - '.$pp.'</p></br>';
+			sorteio($_POST, $pp);
 			$pp = $p -= 1;
-			sorteio($_POST);
 				
 		}
-
-	}
+		
+		echo '</div><hr>';
 
 }
 
-function sorteio($pst)
+function sorteio($pst, $np)
 {
 
-	$_SESSION['sortear'] = $_POST['sortear'];
-	unset($pst['sortear']);
-		
 		$s = 0;	
 		foreach ( $pst as $p )
 		{
@@ -69,6 +61,7 @@ function sorteio($pst)
 		else
 		{
 		
+			echo 'Escolha entre 1 e 6 números!!!';
 			return false;
 			die();
 		
@@ -78,7 +71,7 @@ function sorteio($pst)
 	
 	shuffle($arr1);
 	
-	echo '<div class="sort"><table>';
+	echo '<div class="sort"><table><tr class="titulo_td"><td>Aposta'.$np.'</td><tr>';
 	
 	
 	for ( $i = 0; $i < count($arr2); $i += 1 )
