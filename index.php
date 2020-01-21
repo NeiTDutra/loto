@@ -1,11 +1,12 @@
 <?php
 
 	
-	ini_set('display_startup_erros',1);
+	ini_set('display_startup_erros', 1);
 	ini_set('display_errors', true);
 	error_reporting(E_ALL);
 
-	session_start();
+	//session_start();
+	
 ?>
 
 <!DOCTYPE html>
@@ -18,12 +19,14 @@
 		<div class="container">
 			<div class="top">
 				<ul>
+			    <li>Acerte Errando</li>
 				<li><a href="#">Home</a></li>
 				<li><a href="#" >Organização</a></li>
-				<li><a href="#">Informações</a></li>
+				<li><a href="#informacao">Informações</a></li>
 				</ul>
-			</div>
+			</div> 
 			<div class="formulario">
+			<p>Escolha de 1 a 6 números. Os números escolhidos serão ignorados no sorteio.</p>
 		<form action=<?php echo  $_SERVER['PHP_SELF'] ;?> method="post">
 			<table class="tb_numeros_errados">
 				<tr>
@@ -137,17 +140,33 @@
 					</td>
 				</tr>
 			</table>
-			</br>
+		</div>
+			<div id="select">
+			<p>Quantidade de sorteios (padrão é 10) - 
+			<select name="quant_sort">
+			<?php 
+				for ( $n = 0; $n < 10; $n += 1 )
+				    {
+			          
+				        $n1 = $n += 1;
+		                echo '<option value="'.$n1.'"';
+					    echo $n1 == 10 ? 'selected="selected"' : null;
+					    echo '>'.$n1.'</option>';  
+			            $n1 = $n -= 1;        
+			          
+			        } 
+			?>
+			</select>
 			<input type="submit" name="sortear" value="Sortear">
 			<input type="submit" name="estatistica" value="Estatística">
+			</p>
+			</div>
 		</form>
 		</br>
 		</br>
-		<hr>
-		</div>
 	</div>
+		<hr>
 		</br>
-		<div class="sort_container">
 	<?php
 		if ( isset($_POST['sortear']) )
 		{
@@ -159,6 +178,14 @@
 		}
 
 	?>
+	<div class="informacao indent" id="informacao">
+	<h2>Informações</h2>
+	<h3>Resumo</h3>
+	<p>O sistema escolhe 15 (quinze) números aleatoriamente, dentre 25 (vinte e cinco) números.</p>
+	<p>O usuário escolhe, dentre os 25 números, os que quiser isolar da escolha aleatória.</p>
+	<p>O usuário também pode escolher quantos sorteios desejar.</p>
+	<hr>
+	</div>
 	</div>
 	</body>
 </html>
