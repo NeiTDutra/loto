@@ -7,8 +7,6 @@ function novo_sort()
 		
 	$quant_sort = $_POST['quant_sort'];
 	unset($_POST['quant_sort']);
-	
-	echo '<div class="sort_container">';
 		
 	$arr1 = range(1,25);
 	
@@ -21,11 +19,12 @@ function novo_sort()
 	}
 		
 	$arr3 = isset($arr) ? $arr : null;
-		
-	for ( $k = 0; $k < count($arr1); $k += 1 )
-	{
 	
-		if ( $arr3 != null )
+	
+	if ( $arr3 != null )
+	{	
+	
+		for ( $k = 0; $k < count($arr1); $k += 1 )
 		{
 		
 			foreach ($arr3 as $b)
@@ -42,20 +41,27 @@ function novo_sort()
 			}
 		
 		}
-		else
-		{
 		
-			echo '<p>Escolha entre 1 e 6 números!!!</p>
-				 </div><hr>';
-			return false;
-			die();
+		echo '<div id="title_sort"><h2 class="indent">Os números sorteados foram:</h2>
+			 <p class="indent">(Os números em azul são o sorteio, e em vermelho os isolados)</p>
+			 <hr></div>';
+		echo '<div class="sort_container indent">';
 		
-		}
+	}
+	else
+	{
+		
+		echo '<div class="sort_container indent">';
+		echo '<p>Escolha entre 1 e 6 números!!!</p>
+			 </div><hr>';
+		return false;
+		die();
 		
 	}
 	
 	for ( $p = 0; $p < $quant_sort; $p += 1)
 	{
+	
 		$pp = $p += 1;
 		sorteio($arr1, $pp, $arr3);
 		$pp = $p -= 1;

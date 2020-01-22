@@ -52,6 +52,12 @@
 			flex-wrap: wrap;
 		}
 		
+		#title_sort {
+			width: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		
 		.formulario{
 			height: auto;
 			align-items: left;
