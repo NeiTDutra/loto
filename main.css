@@ -33,6 +33,7 @@
 		
 		.sort table {
 			padding: 2% 0;
+			border: 2px solid blue;
 		}
 		
 		.sort td {
@@ -84,7 +85,7 @@
 		}
 		
 		.tb_numeros_errados {
-			
+			border: 2px solid blue;
 		}
 
 		.tb_numeros_errados input[type="checkbox"] + label {
@@ -144,5 +145,6 @@
 		
 		.top a:hover {
 			color: green;
+			text-decoration: underline;
 		}
 		
