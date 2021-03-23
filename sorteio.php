@@ -42,17 +42,17 @@ function novo_sort()
 		
 		}
 		
-		echo '<div id="title_sort"><h2 class="indent">Os números sorteados foram:</h2>
+		echo '<div id="" class="container text-center"><h2 class="indent">Os números sorteados foram:</h2>
 			 <p class="indent">(Os números em azul são o sorteio, e em vermelho os isolados)</p>
 			 <hr></div>';
-		echo '<div class="sort_container indent">';
+		echo '<div class="container-fluid align-items-center justify-content-center d-flex flex-wrap indent">';
 		
 	}
 	else
 	{
 		
-		echo '<div class="sort_container indent">';
-		echo '<p>Escolha entre 1 e 6 números!!!</p>
+		echo '<div class="container text-center">';
+		echo '<h3 id="warn_sort">Escolha entre 1 e 6 números!!!</h3>
 			 </div><hr>';
 		return false;
 		die();
@@ -81,7 +81,7 @@ function sorteio($pst, $np, $arr3)
 	
 	shuffle($pst);
 	
-	echo '<div class="sort"><table><tr class="titulo_td"><td>Aposta'.$np.'</td><tr>';
+	echo '<div class="sort"><table><tr class="titulo_td"><td>Sorteio - '.$np.'</td><tr>';
 	
 	
 	for ( $i = 0; $i < count($arr2); $i += 1 )

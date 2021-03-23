@@ -8,25 +8,44 @@
 ?>
 
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Acerte Errando</title>
-		<link rel="stylesheet" href="main.css">
+<html lang= "pt-br">
+    <head>
+    <title>Estatísticas da LotoFácil</title>
+    <meta charset="utf-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+    </style>
+		<link rel="stylesheet" href="./main.css">
 	</head>
 	<body>
-		<div class="container">
-			<div class="top">
-				<ul>
-			    <li>Acerte Errando</li>
-				<li><a href="#">Home</a></li>
-				<li><a href="#" >Organização</a></li>
-				<li><a href="#informacao">Informações</a></li>
-				</ul>
-			</div> 
-			<div class="formulario">
-			<p>Escolha de 1 a 6 números. Os números escolhidos serão ignorados no sorteio.</p>
-		<form action=<?php echo  $_SERVER['PHP_SELF'] ;?> method="post">
-			<table class="tb_numeros_errados">
+		<div class="container-fluid">
+	        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <span class="navbar-brand" href="#"></span>
+                <span class="navbar-brand" href="#">Estatísticas Loto Fácil</span>
+                <div class="collapse navbar-collapse" id="textoNavbar">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link top" href="index.php">Home <span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link top" href="#informacao">Informações</a>
+                    </li>
+                </ul>
+                </div>
+                <span class="w-25">
+                    <button type="button" class="btn btn-success" onclick="">
+                        Últimos <span class="top badge" id="ultimos"></span> sorteios:
+                    </button>
+                </span>
+            </nav>
+			<div class="row"> 
+			<div class="d-flex flex-column col-6 text-center justify-content-center">
+			<h4 class="">Escolha de 1 a 6 números.</h4>
+			<h5>Os números escolhidos serão ignorados no sorteio.</h5>
+	        <form action=<?php echo  $_SERVER['PHP_SELF'] ;?> method="post">
+			<table class="tb_numeros_errados mt-3 ml-5">
 				<tr>
 					<td>
 						<input type="checkbox" id="n1" name="n1" value="1">
@@ -138,9 +157,10 @@
 					</td>
 				</tr>
 			</table>
-		</div>
-			<div id="select">
-			<p>Quantidade de sorteios (padrão é 10) - 
+			<div id="" class="pt-2 mt-2 pb-3">
+			<h5>Escolha</h5>
+			<p>Quantidade de sorteios</p>
+			<p>(padrão é 10)</p>
 			<select name="quant_sort">
 			<?php 
 				for ( $n = 0; $n < 10; $n += 1 )
@@ -155,15 +175,21 @@
 			        } 
 			?>
 			</select>
-			<input type="submit" name="sortear" value="Sortear">
-			<input type="submit" name="estatistica" value="Estatística">
-			</p>
+			<input class="btn btn-sm btn-primary" type="submit" name="sortear" value="Sortear">
 			</div>
-		</form>
+		    </form>
+		    </div>
+		    <div class="col-2 text-center pt-3 pb-3" id="one">
+		        <h4>N vezes</h4>
+		    </div>
+		    <div class="col-3 text-center pt-3 pb-3" id="two">
+		        <h4>Números sorteados</h4>
+		    </div>
+		    </div>
 		</br>
 		</br>
 	</div>
-		<hr>
+		<hr id="sort">
 		</br>
 	<?php
 		if ( isset($_POST['sortear']) )
@@ -176,14 +202,15 @@
 		}
 
 	?>
-	<div class="informacao indent" id="informacao">
+	<div class="container text-center" id="informacao">
 	<h2>Informações</h2>
 	<h3>Resumo</h3>
 	<p>O sistema escolhe 15 (quinze) números aleatoriamente, dentre 25 (vinte e cinco) números.</p>
 	<p>O usuário escolhe, dentre os 25 números, os que quiser isolar da escolha aleatória.</p>
-	<p>O usuário também pode escolher quantos sorteios desejar.</p>
+	<p>O usuário também pode escolher quantos sorteios desejar até o máximo de 10.</p>
 	<hr>
 	</div>
 	</div>
 	</body>
+	<script type="text/javascript" src="./matchLoto.js"></script>
 </html>
