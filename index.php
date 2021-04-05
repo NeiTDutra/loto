@@ -20,20 +20,23 @@
 		<link rel="stylesheet" href="./main.css">
 	</head>
 	<body>
-		<div class="container-fluid">
+		<div class="container-fluid" id="toptop">
 	        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
                 <span class="navbar-brand" href="#"></span>
-                <span class="navbar-brand" href="#">Estatísticas Loto Fácil</span>
+                <span class="navbar-brand" href="#">Estatísticas Loto Fácil 🍀️</span>
                 <div class="collapse navbar-collapse" id="textoNavbar">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link top" href="index.php">Home <span class="sr-only"></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link top" href="#informacao">Informações</a>
+                        <a class="nav-link top" href="#informacao">Informações </a>
                     </li>
                 </ul>
                 </div>
+                <span class="w-25">
+                    <p class="text-white pt-3">Última atualização: <strong id="ultima_atualizacao"></strong></p>
+                </span>
                 <span class="w-25">
                     <button type="button" class="btn btn-success" onclick="">
                         Últimos <span class="top badge" id="ultimos"></span> sorteios:
@@ -208,6 +211,7 @@
 	<p>O sistema escolhe 15 (quinze) números aleatoriamente, dentre 25 (vinte e cinco) números.</p>
 	<p>O usuário escolhe, dentre os 25 números, os que quiser isolar da escolha aleatória.</p>
 	<p>O usuário também pode escolher quantos sorteios desejar até o máximo de 10.</p>
+	<p><a href="#toptop"><strong>Voltar</strong></a></p>
 	<hr>
 	</div>
 	</div>

@@ -1,4 +1,4 @@
-
+        
         .sort_cell {
 			border: 1px solid black; 
 			position: relative; 
@@ -41,10 +41,6 @@
 		
 		.titulo_td {
 			background: #eedd82;
-		}
-		
-		#warn_sort {
-			color: red;
 		}
 		
 		#title_sort {

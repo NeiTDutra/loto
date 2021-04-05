@@ -25,6 +25,7 @@ var pos = '';
 var p = 0;
 var posii = 0;
 var resi = '';
+var dt = '15/04/2021';
 
 // função para consulta em arquivo json
 
@@ -85,6 +86,7 @@ function main(arr) {
             return b[1] - a[1];
         }
     });
+    document.querySelector('#ultima_atualizacao').innerText = dt;
     document.querySelector('#ultimos').innerText = j;
 
     // laço que imprime o resultado
