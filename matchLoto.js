@@ -93,9 +93,10 @@ function main(arr) {
     // laço que imprime o resultado
     for(let r = 0; r < res.length; r ++) {
 
+        rank = rank;
         if(res[r][1] !== posii) {
 
-            rank = r + 1;
+            rank = rank + 1;
             document.querySelector('#zero').innerHTML += '<br><div class="bg-secondary text-white w-100 pt-1 pb-1">'+rank+'º</div>';
             document.querySelector('#one').innerHTML += '<br><div class="bg-primary text-white w-100 pt-1 pb-1">'+res[r][1]+'</div>';
             document.querySelector('#two').innerHTML += '<br><div class="bg-success text-white w-100 pt-1 pb-1" id="d'+r+'">|</div>';
