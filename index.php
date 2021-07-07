@@ -1,10 +1,10 @@
 <?php
 
-	
+
 	ini_set('display_startup_erros', 1);
 	ini_set('display_errors', true);
 	error_reporting(E_ALL);
-	
+
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +43,7 @@
                     </button>
                 </span>
             </nav>
-			<div class="row"> 
+			<div class="row">
 			<div class="d-flex flex-column col-6 text-center justify-content-center">
 			<h4 class="">Escolha de 1 a 6 números.</h4>
 			<h5>Os números escolhidos serão ignorados no sorteio.</h5>
@@ -165,24 +165,27 @@
 			<p>Quantidade de sorteios</p>
 			<p>(padrão é 10)</p>
 			<select name="quant_sort">
-			<?php 
+			<?php
 				for ( $n = 0; $n < 10; $n += 1 )
 				    {
-			          
+
 				        $n1 = $n += 1;
 		                echo '<option value="'.$n1.'"';
 					    echo $n1 == 10 ? 'selected="selected"' : null;
-					    echo '>'.$n1.'</option>';  
-			            $n1 = $n -= 1;        
-			          
-			        } 
+					    echo '>'.$n1.'</option>';
+			            $n1 = $n -= 1;
+
+			        }
 			?>
 			</select>
 			<input class="btn btn-sm btn-primary" type="submit" name="sortear" value="Sortear">
 			</div>
 		    </form>
 		    </div>
-		    <div class="col-2 text-center pt-3 pb-3" id="one">
+		    <div class="col-1 text-center pt-3 pb-3" id="zero">
+		        <h4>Rank</h4>
+		    </div>
+		    <div class="col-1 text-center pt-3 pb-3" id="one">
 		        <h4>N vezes</h4>
 		    </div>
 		    <div class="col-3 text-center pt-3 pb-3" id="two">
@@ -197,15 +200,15 @@
 	<?php
 		if ( isset($_POST['sortear']) )
 		{
-		
+
 			require_once 'sorteio.php';
 			novo_sort();
 			unset ($_POST);
-		
+
 		}
 
 	?>
-	<div class="container text-center" id="informacao">
+	<div class="container text-center h-100" id="informacao">
 	<h2>Informações</h2>
 	<h3>Resumo</h3>
 	<p>O sistema escolhe 15 (quinze) números aleatoriamente, dentre 25 (vinte e cinco) números.</p>

@@ -1,4 +1,4 @@
-/* 
+/*
 // file: matchLoto.js
 // content: função para càlculo de quantidade de ocorrências de cada número em (n), em n(array)
 // data: 16/03/2021
@@ -17,7 +17,7 @@ window.onload = () => {
 const matriz = [
      [01,02,03,05,06,09,11,13,14,15,17,18,22,23,25],
      [01,03,06,07,08,09,10,11,13,14,16,18,20,21,24],
-     [03,06,07,08,09,10,13,14,15,16,18,19,20,21,25] 
+     [03,06,07,08,09,10,13,14,15,16,18,19,20,21,25]
     ];
 var m = 0;
 var res = [];
@@ -25,7 +25,8 @@ var pos = '';
 var p = 0;
 var posii = 0;
 var resi = '';
-var dt = '15/04/2021';
+var rank = 0;
+var dt = '28/04/2021';
 
 // função para consulta em arquivo json
 
@@ -37,9 +38,9 @@ function queryDbJson() {
     request.responseType = 'json';
     request.send(null);
     request.onload = () => {
-    
+
         if(request.readyState === 4 && request.status === 200) {
-        
+
             let a = request.response;
             let req = a.data;
             // passa o resultado para a função principal
@@ -49,10 +50,10 @@ function queryDbJson() {
     //request.abort();
 }
 
-// função principal 
+// função principal
 
 function main(arr) {
-    // variável "i" incremental representa os numeros de 1 a 25 que 
+    // variável "i" incremental representa os numeros de 1 a 25 que
     // serão comparados com os números sorteados
     for(var i = 1; i <= 25; i ++) {
         // variável "j" incremental representa os índices da lista que
@@ -94,11 +95,13 @@ function main(arr) {
 
         if(res[r][1] !== posii) {
 
+            rank = r + 1;
+            document.querySelector('#zero').innerHTML += '<br><div class="bg-secondary text-white w-100 pt-1 pb-1">'+rank+'º</div>';
             document.querySelector('#one').innerHTML += '<br><div class="bg-primary text-white w-100 pt-1 pb-1">'+res[r][1]+'</div>';
             document.querySelector('#two').innerHTML += '<br><div class="bg-success text-white w-100 pt-1 pb-1" id="d'+r+'">|</div>';
             var p = r
         }
-        
+
         document.querySelector('#d'+p).innerText += ' '+res[r][0]+' |';
         posii = res[r][1];
     }
@@ -111,4 +114,3 @@ function main(arr) {
 // chama a função de request ao arquivo 'dados.json'
 
 //queryDbJson();
-  
