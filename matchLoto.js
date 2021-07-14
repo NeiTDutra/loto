@@ -28,8 +28,8 @@ var resi = '';
 var rank = 0;
 var dt = '17/05/2021';
 
-// função para consulta em arquivo json
-
+// função para consulta em arquivo json usando XMLHttpRequest
+/*
 function queryDbJson() {
 
     let request = new XMLHttpRequest();
@@ -47,12 +47,20 @@ function queryDbJson() {
             main(req);
         }
     };
-    //request.abort();
+}
+*/
+// função para consulta em arquivo json usando fetch
+
+function queryDbJson() {
+    fetch('./dados.json')
+    .then(responseStream => responseStream.json())
+    .then(data => main(data));
 }
 
 // função principal
 
-function main(arr) {
+function main(a) {
+    let arr = a.data;
     // variável "i" incremental representa os numeros de 1 a 25 que
     // serão comparados com os números sorteados
     for(var i = 1; i <= 25; i ++) {
