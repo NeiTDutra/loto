@@ -26,7 +26,7 @@ var p = 0;
 var posii = 0;
 var resi = '';
 var rank = 0;
-var dt = '21/05/2021';
+var dt = '02/06/2021';
 
 // função para consulta em arquivo json usando XMLHttpRequest
 /*
@@ -52,15 +52,15 @@ function queryDbJson() {
 // função para consulta em arquivo json usando fetch
 
 function queryDbJson() {
-    fetch('./dados.json')
+    fetch('dados.json')
     .then(responseStream => responseStream.json())
-    .then(data => main(data));
+    .then(d => main(d.data));
 }
 
 // função principal
 
-function main(a) {
-    let arr = a.data;
+function main(arr) {
+    //let arr = a.data;
     // variável "i" incremental representa os numeros de 1 a 25 que
     // serão comparados com os números sorteados
     for(var i = 1; i <= 25; i ++) {
