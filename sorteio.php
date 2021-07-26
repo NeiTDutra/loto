@@ -45,22 +45,24 @@ function novo_sort()
 		echo '<div class="container text-center"><h2 class="indent">Os números sorteados foram:</h2>
 			 <p class="indent">(Os números em azul são o sorteio, e em vermelho os isolados)</p>
 			 <hr></div>';
-		echo '<div id="anch" class="container-fluid align-items-center justify-content-center d-flex flex-wrap indent">';
+		echo '<div class="container-fluid align-items-center justify-content-center d-flex flex-wrap indent">';
 
 	}
 	else
 	{
 
-		echo '<div class="container text-center">';
-		echo '<h3 class="text-danger">Escolha entre 1 e 6 números!!!</h3>
+		echo '<script>alert("Escolha entre 1 e 6 números!!!");</script>';
+/*		echo '<div class="container text-center">
+			 <h3 class="text-danger">Escolha entre 1 e 6 números!!!</h3>
 			 </div>
 			 <div class="w-100 text-center align-items-center justify-content-center">
 			 <p><a href="#toptop"><strong>Voltar</strong></a></p>
 			 </div>
+             <hr id="anch-warn">
 			 <script>
-             window.location.href="#sort";
-             </script>
-             <hr>';
+             window.location.href="#anch-warn";
+             </script>';
+*/
 		return false;
 		die();
 
@@ -147,7 +149,9 @@ function sorteio($pst, $np, $arr3)
 
 	}
 
-		echo '</table></div><script>
+		echo '</table></div>
+			<hr id="anch">
+			<script>
             window.location.href="#anch";
             </script>
             ';

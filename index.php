@@ -45,9 +45,9 @@
                 </span>
             </nav>
 			<div class="row">
-			<div class="d-flex flex-column col-6 text-center justify-content-center">
+			<div class="d-flex flex-column col-6 text-center mt-3">
 			<h4 class="">Escolha de 1 a 6 números.</h4>
-			<h5>Os números escolhidos serão ignorados no sorteio.</h5>
+			<h5 class="pb-5">Os números escolhidos serão ignorados no sorteio.</h5>
 	        <form action=<?php echo  $_SERVER['PHP_SELF'] ;?> method="post">
 			<table class="tb_numeros_errados mt-3 ml-5">
 				<tr>
@@ -162,9 +162,7 @@
 				</tr>
 			</table>
 			<div id="" class="pt-2 mt-2 pb-3">
-			<h5>Escolha</h5>
-			<p>Quantidade de sorteios</p>
-			<p>(padrão é 10)</p>
+			<h5>Escolha quantos sorteios(padrão é 10):
 			<select name="quant_sort">
 			<?php
 				for ( $n = 0; $n < 10; $n += 1 )
@@ -178,8 +176,8 @@
 
 			        }
 			?>
-			</select>
-			<input class="btn btn-sm btn-primary" type="submit" name="sortear" value="Sortear">
+			</select></h5>
+			<input class="btn btn-primary" type="submit" name="sortear" value="Sortear">
 			</div>
 		    </form>
 		    </div>
