@@ -7,9 +7,12 @@
 
 // processa o script ao carregar a página
 
-window.onload = () => {
-
-    queryDbJson();
+window.onload = async () => {
+    try {
+        return queryDbJson();
+    } catch (error) {
+        console.error(error);
+    }
 };
 
 // declaração das variáveis
@@ -26,10 +29,11 @@ var p = 0;
 var posii = 0;
 var resi = '';
 var rank = 0;
-var dt = '02/06/2021';
+var dt = '18/06/2021';
+var ns = '2259';
 
 // função para consulta em arquivo json usando XMLHttpRequest
-/*
+
 function queryDbJson() {
 
     let request = new XMLHttpRequest();
@@ -48,18 +52,20 @@ function queryDbJson() {
         }
     };
 }
-*/
+
 // função para consulta em arquivo json usando fetch
-
+/*
 function queryDbJson() {
-    fetch('dados.json')
-    .then(responseStream => responseStream.json())
-    .then(d => main(d.data));
+        fetch('./dados.json')
+        .then(responseStream => responseStream.json())
+        .then(d => main(d.data))
+        .catch(err => console.log(err));
 }
-
+*/
 // função principal
 
 function main(arr) {
+    console.log(arr);
     //let arr = a.data;
     // variável "i" incremental representa os numeros de 1 a 25 que
     // serão comparados com os números sorteados
@@ -96,6 +102,7 @@ function main(arr) {
         }
     });
     document.querySelector('#ultima_atualizacao').innerText = dt;
+    document.querySelector('#ultimo_numero').innerText = ns;
     document.querySelector('#ultimos').innerText = j;
 
     // laço que imprime o resultado

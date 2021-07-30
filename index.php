@@ -36,7 +36,8 @@
                 </ul>
                 </div>
                 <span class="w-25">
-                    <p class="text-white pt-3">Última atualização: <strong id="ultima_atualizacao"></strong></p>
+                    <p class="text-white pt-1">Última atualização: <strong id="ultima_atualizacao"></strong></p>
+					<p class="text-white">Sorteio nº: <strong id="ultimo_numero"></strong></p>
                 </span>
                 <span class="w-25">
                     <button type="button" class="btn btn-success" onclick="">
