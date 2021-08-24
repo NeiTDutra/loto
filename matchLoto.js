@@ -29,15 +29,15 @@ var p = 0;
 var posii = 0;
 var resi = '';
 var rank = 0;
-var dt = '23/06/2021';
-var ns = '2263';
+var dt = '23/08/2021';
+var ns = '2315';
 
 // função para consulta em arquivo json usando XMLHttpRequest
 
 function queryDbJson() {
 
     let request = new XMLHttpRequest();
-    let url = './dados.json';
+    let url = './datanumbers.json';
     request.open('POST', url, true);
     request.responseType = 'json';
     request.send(null);

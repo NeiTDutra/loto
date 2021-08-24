@@ -1,0 +1,90 @@
+<?php
+
+
+	ini_set('display_startup_erros', 1);
+	ini_set('display_errors', true);
+	error_reporting(E_ALL);
+
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+		<link rel="icon" type="image/jpg" href="./images/trevo.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+    </style>
+		<link rel="stylesheet" href="./main.css">
+    <title>Alimentar dados</title>
+  </head>
+  <body>
+    <div class="container h-100 text-center">
+	    <h1 class="mt-2">Alimentar dados com últimos sorteios</h1>
+	    <br>
+	    <br>
+			<div class="bg-success p-5 mb-5 row h-100 justify-content-center align-items-center">
+	      <form class="col-12 w-50" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+					<div class="form-group mb-3">
+		        <label for="inputArray" class="text-white p-2">Insere os números</label>
+		        <input id="inputArray" class="form-control" type="text" name="arrayNumbers" value="">
+					</div>
+	        <input class="btn btn-primary" type="submit" name="gravar" value="Gravar">
+	        <input class="btn btn-secondary" type="submit" name="sair" value="Sair">
+	      </form>
+			</div>
+  <?php
+
+	  ini_set('display_errors', true);
+    error_reporting(E_ALL);
+
+    if(isset($_POST['gravar'])) {
+
+      if($_POST['arrayNumbers'] === "") {
+
+        echo '<p class="text-danger">Esta tentando gravar vazio!</p>';
+				die();
+      }
+			else {
+
+        $post = explode(' ', $_POST['arrayNumbers']);
+        echo '<p class="text-danger">Data string = ';
+        foreach ($post as $key => $value) {
+
+          $post[$key] = intval($value);
+          echo $value;
+        }
+        echo '</p>';
+        echo '<p class="text-warning">Data integer = ';
+        foreach ($post as $key => $value) {
+          echo $value;
+        }
+        echo '</p>';
+
+        $json = json_encode($post, JSON_PRETTY_PRINT);
+        echo '<p class="text-success">Data json = '.$json.'</p>';
+
+        $temp = file_get_contents('datanumbers.json');
+        $temp = json_decode($temp,TRUE);
+        $temp["data"][] = $post;
+
+        echo '<pre class="text-secondary">';
+        print_r($temp);
+
+        file_put_contents('datanumbers.json', json_encode($temp));
+
+				unset($_POST);
+				die();
+      }
+    }
+    else if(isset($_POST['sair'])) {
+
+      header('Location:./index.php');
+      die();
+    }
+   ?>
+ 	</div>
+</body>
+</html>
