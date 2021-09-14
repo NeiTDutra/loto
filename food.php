@@ -29,7 +29,7 @@
 	      <form class="col-12 w-50" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 					<div class="form-group mb-3">
 		        <label for="inputArray" class="text-white p-2">Insere os números</label>
-		        <input id="inputArray" class="form-control" type="text" name="arrayNumbers" value="">
+		        <input id="inputArray" class="form-control" type="text" name="arrayNumbers" value="" autocomplete="off" autofocus>
 					</div>
 	        <input class="btn btn-primary" type="submit" name="gravar" value="Gravar">
 	        <input class="btn btn-secondary" type="submit" name="sair" value="Sair">
