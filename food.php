@@ -44,43 +44,63 @@
 
       if($_POST['arrayNumbers'] === "") {
 
-        echo '<p class="text-danger">Esta tentando gravar vazio!</p>';
+        echo '<p class="text-danger">Esta tentando gravar <strong>vazio</storng>!</p>';
 				die();
       }
 			else {
 
-        $post = explode(' ', $_POST['arrayNumbers']);
+        $t = trim($_POST['arrayNumbers']);
+        $post = explode(' ', $t);
+        
         echo '<p class="text-danger">Data string = ';
+
         foreach ($post as $key => $value) {
 
-          $post[$key] = intval($value);
-          echo $value;
+          $post[$key] = intval(trim($value));
+          echo $value.'('.var_dump($post[$key]).') - ';
         }
         echo '</p>';
         echo '<p class="text-warning">Data integer = ';
+
         foreach ($post as $key => $value) {
-          echo $value;
+
+            echo $value.' - ';
         }
+        echo '<br/>contagem - '.count($post).' numero(s)';
         echo '</p>';
 
-        $json = json_encode($post, JSON_PRETTY_PRINT);
-        echo '<p class="text-success">Data json = '.$json.'</p>';
+        if(count($post) < 15) {
 
-        $temp = file_get_contents('datanumbers.json');
-        $temp = json_decode($temp,TRUE);
-        $temp["data"][] = $post;
+          echo '<p class="text-danger">Esta tentando gravar <strong>menos</strong> de 15 números!</p>';
+				  die();
+        }
+        else if(count($post) > 15) {
 
-        echo '<pre class="text-secondary">';
-        print_r($temp);
+          echo '<p class="text-danger">Esta tentando gravar <strong>mais</strong> de 15 números!</p>';
+				  die();
+        }
+        else {
 
-        file_put_contents('datanumbers.json', json_encode($temp));
+          $json = json_encode($post, JSON_PRETTY_PRINT);
+          echo '<p class="text-success">Data json = '.$json.'</p>';
 
-				unset($_POST);
-				die();
+          $temp = file_get_contents('datanumbers.json');
+          $temp = json_decode($temp,TRUE);
+          $temp["data"][] = $post;
+
+          echo '<pre class="text-secondary">';
+          print_r($temp);
+
+          file_put_contents('datanumbers.json', json_encode($temp));
+
+          unset($_POST);
+          die();
+        }
       }
     }
     else if(isset($_POST['sair'])) {
 
+      unset($_POST);
       header('Location:./index.php');
       die();
     }
