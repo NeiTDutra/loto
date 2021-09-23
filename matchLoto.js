@@ -29,8 +29,8 @@ var p = 0;
 var posii = 0;
 var resi = '';
 var rank = 0;
-var dt = '20/09/2021';
-var ns = '2327';
+var dt = '22/09/2021';
+var ns = '2329';
 
 // função para consulta em arquivo json usando XMLHttpRequest
 
