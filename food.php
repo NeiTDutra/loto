@@ -64,7 +64,15 @@
 
         foreach ($post as $key => $value) {
 
+          if(!is_int($value) || $value == 0) {
+
+            echo '<p class="text-danger">Esta tentando gravar <strong>valor não numérico ou zero(s)</strong>!</p>';
+				    die();
+          }
+          else {
+
             echo $value.' - ';
+          }
         }
         echo '<br/>contagem - '.count($post).' numero(s)';
         echo '</p>';
