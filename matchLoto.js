@@ -47,6 +47,8 @@ function queryDbJson() {
 
             let a = request.response;
             let req = a.data;
+            dt = a.date;
+            ns = a.concurso;
             // passa o resultado para a função principal
             main(req);
         }

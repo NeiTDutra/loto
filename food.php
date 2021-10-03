@@ -132,8 +132,15 @@
       else {
 
         $n_d = new DateTime($_POST['nova-data']);
-        $n_data = $n_d->format('d/m/Y');
+        $n_data = $n_d->format('d-m-Y');
         $n_sort = $_POST['n-sorteio'];
+        
+        $temp = file_get_contents('datanumbers.json');
+        $temp = json_decode($temp,TRUE);
+        $temp["date"] = $n_data;
+        $temp["concurso"] = $n_sort;
+
+        file_put_contents('datanumbers.json', json_encode($temp, JSON_PRETTY_PRINT));
 
         echo '<p>Nova Data = '.$n_data.'</p>';
         echo '<p>Novo Sorteio nº = '.$n_sort.'</p>';
