@@ -91,6 +91,7 @@ function main(arr) {
         // zera o contador para o próximo laço
         m = 0;
     }
+    // ordena o array de consulta para saída em ordem decrescente
     res.sort( (a,b) => {
         if(a[1] == b[1]) {
 

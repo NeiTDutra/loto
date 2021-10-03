@@ -99,7 +99,7 @@
           echo '<pre class="text-secondary">';
           print_r($temp);
 
-          file_put_contents('datanumbers.json', json_encode($temp));
+          file_put_contents('datanumbers.json', json_encode($temp, JSON_PRETTY_PRINT));
 
           unset($_POST);
           die();
