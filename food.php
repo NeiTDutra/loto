@@ -26,12 +26,22 @@
 	    <br>
 	    <br>
 			<div class="bg-success p-5 mb-5 row h-100 justify-content-center align-items-center">
-	      <form class="col-12 w-50" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+	      <form class="col-9 w-50" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 					<div class="form-group mb-3">
 		        <label for="inputArray" class="text-white p-2">Insere os números</label>
 		        <input id="inputArray" class="form-control" type="text" name="arrayNumbers" value="" autocomplete="off" autofocus>
 					</div>
 	        <input class="btn btn-primary" type="submit" name="gravar" value="Gravar">
+	        <input class="btn btn-secondary" type="submit" name="sair" value="Sair">
+	      </form>
+	      <form class="col-3" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+					<div class="form-group mb-3">
+		        <label for="inputData" class="text-white p-2">Último sorteio data</label>
+		        <input id="inputData" class="form-control" type="date" name="nova-data" value="" autocomplete="off" autofocus>
+		        <label for="inputN" class="text-white p-2">Último sorteio nº</label>
+		        <input id="inputN" class="form-control" type="text" name="n-sorteio" value="" autocomplete="off" autofocus>
+					</div>
+	        <input class="btn btn-primary" type="submit" name="gravar-data" value="Gravar">
 	        <input class="btn btn-secondary" type="submit" name="sair" value="Sair">
 	      </form>
 			</div>
@@ -44,7 +54,7 @@
 
       if($_POST['arrayNumbers'] === "") {
 
-        echo '<p class="text-danger">Esta tentando gravar <strong>vazio</storng>!</p>';
+        echo '<p class="text-danger">Esta tentando gravar <strong>números sorteados vazio</storng>!</p>';
 				die();
       }
 			else {
@@ -111,6 +121,24 @@
       unset($_POST);
       header('Location:./index.php');
       die();
+    }
+    else if(isset($_POST['gravar-data'])) {
+
+      if($_POST['nova-data'] === "" || $_POST['n-sorteio'] === "") {
+
+        echo '<p class="text-danger">Esta tentando gravar <strong>último sorteio vazio</storng>!</p>';
+				die();
+      }
+      else {
+
+        $n_d = new DateTime($_POST['nova-data']);
+        $n_data = $n_d->format('d/m/Y');
+        $n_sort = $_POST['n-sorteio'];
+
+        echo '<p>Nova Data = '.$n_data.'</p>';
+        echo '<p>Novo Sorteio nº = '.$n_sort.'</p>';
+        die();
+      }
     }
    ?>
  	</div>
