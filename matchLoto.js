@@ -9,11 +9,28 @@
 
 window.onload = async () => {
     try {
-        return queryDbJson();
+
+        let numN = 15;
+        return queryDbJson(numN);
     } catch (error) {
         console.error(error);
     }
 };
+
+// processa o script caso estipulado numero 'n' de resultados
+
+function nResultados() {
+
+    let num = document.getElementById('ultimos').value;
+
+    try {
+
+        return queryDbJson(num);
+    } catch (error) {
+
+        console.log(error);
+    }
+}
 
 // declaração das variáveis
 
@@ -23,21 +40,22 @@ const matriz = [
      [03,06,07,08,09,10,13,14,15,16,18,19,20,21,25]
     ];
 var m = 0;
+var reqN = [];
 var res = [];
-var pos = '';
 var p = 0;
 var posii = 0;
 var resi = '';
 var rank = 0;
-var dt = '25/09/2021';
-var ns = '2332';
+var dt = '00/00/0000';
+var ns = '0000';
 
 // função para consulta em arquivo json usando XMLHttpRequest
 
-function queryDbJson() {
+function queryDbJson(n) {
 
     let request = new XMLHttpRequest();
     let url = './datanumbers.json';
+    
     request.open('POST', url, true);
     request.responseType = 'json';
     request.send(null);
@@ -49,8 +67,19 @@ function queryDbJson() {
             let req = a.data;
             dt = a.date;
             ns = a.concurso;
+            // testa se existe parametro passado na função
+            if(n != null && n != 0) {
+
+                console.log('VALOR DE N:', n);
+                reqN = req.slice(0, n);
+                console.log('ARRAY DEPOS DO SLICE:', reqN);
+            }
+            else {
+
+                reqN = req;
+            }
             // passa o resultado para a função principal
-            main(req);
+            main(reqN);
         }
     };
 }
@@ -67,7 +96,7 @@ function queryDbJson() {
 // função principal
 
 function main(arr) {
-    console.log(arr);
+    console.log('VALOR DO ARRAY:', arr);
     //let arr = a.data;
     // variável "i" incremental representa os numeros de 1 a 25 que
     // serão comparados com os números sorteados
@@ -84,7 +113,7 @@ function main(arr) {
                     p = m ++;
                 }
             }
-            // zera o contador para o próximo laçp
+            // zera o contador para o próximo laço
             p = 0;
         }
         // monta uma lista com os resultados
@@ -106,7 +135,7 @@ function main(arr) {
     });
     document.querySelector('#ultima_atualizacao').innerText = dt;
     document.querySelector('#ultimo_numero').innerText = ns;
-    document.querySelector('#ultimos').innerText = j;
+    document.querySelector('#ultimos').value = j;
 
     // laço que imprime o resultado
     for(let r = 0; r < res.length; r ++) {

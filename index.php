@@ -41,7 +41,10 @@
                 </span>
                 <span class="w-25">
                     <button type="button" class="btn btn-success" onclick="">
-                        Últimos <span class="top badge" id="ultimos"></span> sorteios:
+						Últimos <span class="top badge"><input type="text" name="ultimos" id="ultimos"/></span> sorteios
+<!--
+                        Últimos <span class="top badge" id="ultimos"></span> sorteios
+-->
                     </button>
                     <a href="food.php">add rows</a>
                 </span>
