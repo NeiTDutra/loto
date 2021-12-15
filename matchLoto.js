@@ -10,7 +10,7 @@
 window.onload = async () => {
     try {
 
-        let numN = 15;
+        var numN = 0;
         return queryDbJson(numN);
     } catch (error) {
         console.error(error);
@@ -23,10 +23,18 @@ function nResultados() {
 
     let num = document.getElementById('ultimos').value;
 
+    let zero = document.querySelector('.zero');
+    zero.parentNode.removeChild(zero);
+    let one = document.querySelector('.one');
+    one.parentNode.removeChild(one);
+    let two = document.querySelector('.two');
+    two.parentNode.removeChild(two);
+
     try {
 
         return queryDbJson(num);
-    } catch (error) {
+    } 
+    catch (error) {
 
         console.log(error);
     }
@@ -39,13 +47,8 @@ const matriz = [
      [01,03,06,07,08,09,10,11,13,14,16,18,20,21,24],
      [03,06,07,08,09,10,13,14,15,16,18,19,20,21,25]
     ];
-var m = 0;
+    
 var reqN = [];
-var res = [];
-var p = 0;
-var posii = 0;
-var resi = '';
-var rank = 0;
 var dt = '00/00/0000';
 var ns = '0000';
 
@@ -65,6 +68,7 @@ function queryDbJson(n) {
 
             let a = request.response;
             let req = a.data;
+
             dt = a.date;
             ns = a.concurso;
             // testa se existe parametro passado na função
@@ -86,8 +90,8 @@ function queryDbJson(n) {
 
 // função para consulta em arquivo json usando fetch
 /*
-function queryDbJson() {
-        fetch('./dados.json')
+async function queryDbJson() {
+        await fetch('./dados.json')
         .then(responseStream => responseStream.json())
         .then(d => main(d.data))
         .catch(err => console.log(err));
@@ -96,29 +100,32 @@ function queryDbJson() {
 // função principal
 
 function main(arr) {
+
+    let m = 0;
+    let res = [];
+    let p = 0;
+    let posii = 0;
+    let rank = 0;
+
     console.log('VALOR DO ARRAY:', arr);
-    //let arr = a.data;
     // variável "i" incremental representa os numeros de 1 a 25 que
     // serão comparados com os números sorteados
-    for(var i = 1; i <= 25; i ++) {
+    for(let i = 1; i <= 25; i ++) {
         // variável "j" incremental representa os índices da lista que
         // contém as listas dos números sorteados
         for(var j = 0; j < arr.length; j ++) {
             // variável "n" incremental representa os índices da lista de números
             // sorteados
-            for(var n = 0; n < arr[j].length; n ++) {
+            for(let n = 0; n < arr[j].length; n ++) {
                 // compara os números e faz a contagem de quantas vezes cada número saiu
                 // dentro da quantia de sorteios
                 if(i === arr[j][n]) {
-                    p = m ++;
+                    m ++;
                 }
             }
-            // zera o contador para o próximo laço
-            p = 0;
         }
         // monta uma lista com os resultados
-        var posa = [i,m];
-        res.push(posa);
+        res.push([i,m]);
         // zera o contador para o próximo laço
         m = 0;
     }
@@ -144,21 +151,13 @@ function main(arr) {
         if(res[r][1] !== posii) {
 
             rank = rank + 1;
-            document.querySelector('#zero').innerHTML += '<br><div class="bg-secondary text-white w-100 pt-1 pb-1">'+rank+'º</div>';
-            document.querySelector('#one').innerHTML += '<br><div class="bg-primary text-white w-100 pt-1 pb-1">'+res[r][1]+'</div>';
-            document.querySelector('#two').innerHTML += '<br><div class="bg-success text-white w-100 pt-1 pb-1" id="d'+r+'">|</div>';
-            var p = r
+            document.querySelector('#zero').innerHTML += '<br class="zero"><div class="zero bg-secondary text-white w-100 pt-1 pb-1">'+rank+'º</div>';
+            document.querySelector('#one').innerHTML += '<br class="one"><div class="one bg-primary text-white w-100 pt-1 pb-1">'+res[r][1]+'</div>';
+            document.querySelector('#two').innerHTML += '<br class="two"><div class="two bg-success text-white w-100 pt-1 pb-1" id="d'+r+'">|</div>';
+            p = r
         }
 
         document.querySelector('#d'+p).innerText += ' '+res[r][0]+' |';
         posii = res[r][1];
     }
 }
-
-// chama a função principal neste mesmo arquivo
-
-//main(matriz);
-
-// chama a função de request ao arquivo 'dados.json'
-
-//queryDbJson();

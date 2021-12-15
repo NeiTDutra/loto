@@ -40,11 +40,17 @@
 					<p class="text-white">Sorteio nº: <strong id="ultimo_numero"></strong></p>
                 </span>
                 <span class="w-25">
-                    <button type="button" class="btn btn-success" onclick="">
-						Últimos <span class="top badge"><input type="text" name="ultimos" id="ultimos"/></span> sorteios
+<!--
+					<button type="button" class="btn btn-success" onclick="">
+-->
+						<span class="top badge">Últimos <input type="text" name="ultimos" id="ultimos"/> sorteios</span>
 <!--
                         Últimos <span class="top badge" id="ultimos"></span> sorteios
+					<button type="button" class="btn btn-success" onclick="nResultados();">
+						Buscar
 -->
+					<button type="button" class="btn btn-success" onclick="nResultados()">
+						Buscar
                     </button>
                     <a href="food.php">add rows</a>
                 </span>
